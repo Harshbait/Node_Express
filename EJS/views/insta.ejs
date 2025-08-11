@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inka Namm</title>
+</head>
+
+<body>
+    <h1>Account name is: @<%= username%>
+    </h1>
+    <button>follow</button>
+    <button>Message</button>
+
+    <h3>Follower: </h3>
+    <ul>
+        <% for(let name of folowers) {%>
+            <li>
+                <%= name %>
+            </li>
+        <% } %>
+    </ul>
+</body>
+
+</html>
