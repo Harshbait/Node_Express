@@ -15,6 +15,7 @@ app.get('/register', (req, res) => {
 app.post('/register', (req, res) => {
     let { user, password } = req.body
     res.send(`Welcome User from POST Response ${user} !`)
+    
 })
 
 app.listen(port, () => {
