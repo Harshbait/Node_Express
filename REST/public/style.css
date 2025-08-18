@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+    color: white;
+}
+
+h1{
+    color: rgb(185, 7, 7);
+}
+.post{
+    padding: 2px 10px;
+    margin: 5px;
+    background-color: rgb(83, 83, 83);
+    border-radius: 13px;
+}
+
+a{
+    color: bisque;
+}
+
+.user{
+    font-style: italic;
+}
