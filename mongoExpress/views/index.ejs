@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Chats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h2>All Chats</h2>
+    <form method="get" action="/chats/new">
+        <button>New</button>
+    </form>
+    <div class="all">
+        <% for(let chat of chats) { %>
+            <div class="chats">
+                <p>From: <i>
+                        <%=chat.from%>
+                    </i>
+                </p>
+                <div class="msg">
+                    <p>Message: <%=chat.messg%>
+                    </p>
+                    <form method="get" action="/chats/<%= chat._id %>/edit">
+                        <button class="bu">Edit Message</button>
+                    </form>
+                    <br>
+                    <form method="post" action="/chats/<%= chat._id %>/?_method=DELETE">
+                        <button class="bu">Delete</button>
+                    </form>
+                </div>
+                <p>To: <i>
+                        <%=chat.to%>
+                    </i>
+                </p>
+                <p>Date: <%=chat.created_at.toString().split(" ").slice(0, 4).join(" ")%>
+                <p>Time: <%=chat.created_at.toString().split(" ")[4]%>
+
+            </p>
+
+<% if (chat.updated_at && chat.updated_at.getTime() !== chat.created_at.getTime()) { %>
+  <p>Edited On: <%= chat.updated_at.toString().split(" ").slice(0, 4).join(" ") %> at <%= chat.updated_at.toString().split(" ")[4] %></p>
+<% } %>
+
+            <hr>
+        </div>
+
+        <% } %>
+        </div>
+</body>
+
+</html>
