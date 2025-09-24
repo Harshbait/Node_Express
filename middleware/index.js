@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 7000
+const ExpressError = require('./ExpressError')
 
 // app.use((req, res, next) => {
 //     let { q } = req.query;
@@ -16,6 +17,20 @@ const port = 7000
 //     next()
 // })
 
+// api token as Query String
+app.use("/api", (req, res, next) => {
+    let {token} = req.query
+    if(token === "giveaccess") {
+        next();
+    } else {
+        throw new ExpressError(401, "Access Denied")
+    }
+})
+
+app.use('/api', (req, res) => {
+    res.send("Data")
+})
+
 // app.use with Callback
 app.use('/random',(req, res, next) =>{ 
     console.log("I am only for random")
@@ -24,6 +39,9 @@ app.use('/random',(req, res, next) =>{
 
 app.get('/', (req, res) => {
     res.send("Yoo");
+})
+app.get('/o', (req, res) => {
+    abc = abc 
 })
 app.get('/random', (req, res) => {
     res.send("This is a random page");
@@ -37,4 +55,11 @@ app.use((req, res) => {
 
 app.listen(port, (req, res) => {
     console.log(`Serever is Rumning in ${port}`)
+})
+
+// Middleware that handels Error
+
+app.use((err, req, res, next) => {
+    let {status=500, message="Some Error ocurred"} = err  //We ares deconstructing this from our error Object
+    res.status(status).send(message)
 })
